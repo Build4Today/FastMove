@@ -4058,6 +4058,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-native@npm:^0.73.0":
+  version: 0.73.0
+  resolution: "@types/react-native@npm:0.73.0"
+  dependencies:
+    react-native: "*"
+  checksum: a764ca5d876dae3c109da449f736c44271b3b236d0d6e836c078247af1419f6d851600c56bb0c26f3e0d1b4be6eaac56b65c1f74ad0f0d05baf8b65dd1d5c597
+  languageName: node
+  linkType: hard
+
+"@types/react-navigation@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "@types/react-navigation@npm:3.4.0"
+  dependencies:
+    react-navigation: "*"
+  checksum: 527549ae30c3b99aeea7bb6bf6d0894cd99c1173bd24753d5621fb110dd80f669b8a1c5f269f51ca174b8dabb914797e524f9efd1dcde52da56cf370d3d41f21
+  languageName: node
+  linkType: hard
+
 "@types/react-test-renderer@npm:^18.0.0":
   version: 18.3.0
   resolution: "@types/react-test-renderer@npm:18.3.0"
@@ -6364,6 +6382,8 @@ __metadata:
     "@tsconfig/react-native": ^3.0.2
     "@types/jest": ^29.5.3
     "@types/react": ^18.2.20
+    "@types/react-native": ^0.73.0
+    "@types/react-navigation": ^3.4.0
     "@types/react-test-renderer": ^18.0.0
     axios: ^1.7.2
     expo: ~49.0.7
@@ -9709,7 +9729,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native@npm:^0.74.1":
+"react-native@npm:*, react-native@npm:^0.74.1":
   version: 0.74.1
   resolution: "react-native@npm:0.74.1"
   dependencies:
@@ -9759,6 +9779,13 @@ __metadata:
   bin:
     react-native: cli.js
   checksum: f89c54da0b3f475bf1a90cfce62a062606ecdfa9974b264f2b69c823dd1e43c866e89d83d20d1af06018ce8301ca32a270c2f8eb06f6b3f3dcd816e9d0995cc3
+  languageName: node
+  linkType: hard
+
+"react-navigation@npm:*":
+  version: 5.0.0
+  resolution: "react-navigation@npm:5.0.0"
+  checksum: 90a44a82e6b6cf39cde4a14b7ba3e6bef241af247b155c61a3cc00db694260e47a29bc617acad03cb98a7a70f215ee58a92902f988a4e52e444ff18fef545ea7
   languageName: node
   linkType: hard
 

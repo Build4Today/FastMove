@@ -36,6 +36,8 @@
     "@tsconfig/react-native": "^3.0.2",
     "@types/jest": "^29.5.3",
     "@types/react": "^18.2.20",
+    "@types/react-native": "^0.73.0",
+    "@types/react-navigation": "^3.4.0",
     "@types/react-test-renderer": "^18.0.0",
     "prettier": "^3.0.2",
     "react-native-dotenv": "^3.4.9",
