@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { AutosizeTextarea } from "native-textarea";
-import { Box, Flex, Text, VStack, Heading, Divider, Button, useToast, Input, ScrollView } from "native-base";
+import { Box, Flex, Text, VStack, Heading, Divider, Button, useToast, Input, ScrollView, Textarea } from "native-base";
 import { makeDecision } from "../services/ai-api.service";
 import { performOCR } from "../services/ocr.service";
 import { saveDecision } from "../services/decision.service";
@@ -108,7 +107,7 @@ export const DecisionDetailsScreen: React.FC = () => {
             <Text fontSize="lg" fontWeight="bold" mb={1}>
               Decision A
             </Text>
-            <AutosizeTextarea
+            <Textarea
               value={decisionA}
               onChangeText={setDecisionA}
               placeholder="Enter Decision A"
@@ -125,7 +124,7 @@ export const DecisionDetailsScreen: React.FC = () => {
             <Text fontSize="lg" fontWeight="bold" mb={1}>
               Decision B
             </Text>
-            <AutosizeTextarea
+            <Textarea
               value={decisionB}
               onChangeText={setDecisionB}
               placeholder="Enter Decision B"
