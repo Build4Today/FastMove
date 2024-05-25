@@ -8,7 +8,7 @@ import { ListingCard } from "../components/ListingCard";
 import { House } from "../types/house.type";
 import { ScreenName } from "../types/navigation.type";
 
-export const ListingScreen = ({ navigation }: any) => {
+export const DecisionHistoryScreen = ({ navigation }: any) => {
   const queryClient = useQueryClient();
   const { house, isLoading, isFetching } = useFetchOwnHouses();
 

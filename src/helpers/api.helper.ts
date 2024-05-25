@@ -1,8 +1,8 @@
 import axios from "axios";
-import { API_SERVER_URL } from "@env";
+import { API_URL } from "@env";
 
 // make API requests easily with Axios
-export const api = (() => axios.create({ baseURL: API_SERVER_URL }))();
+export const api = (() => axios.create({ baseURL: API_URL }))();
 
 api.interceptors.response.use(
   (response) => response,

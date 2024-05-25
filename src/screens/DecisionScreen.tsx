@@ -9,7 +9,7 @@ import { ListingCard } from "../components/ListingCard";
 import { House } from "../types/house.type";
 import { ScreenName } from "../types/navigation.type";
 
-export const ExploreScreen = ({ navigation }: any) => {
+export const DecisionScreen = ({ navigation }: any) => {
   const queryClient = useQueryClient();
 
   const [category, setCategory] = useState("");

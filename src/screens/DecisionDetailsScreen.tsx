@@ -20,12 +20,12 @@ import { formatPrice } from "../helpers/price.helper";
 import { BackChevronIcon } from "../components/BackChevronIcon";
 import { stringWidth } from "../helpers/text.helper";
 
-interface ListingDetailsScreenProps {
+interface DecisionDetailsScreenProps {
   route: any;
   navigation: any;
 }
 
-export const ListingDetailsScreen = ({ route, navigation }: ListingDetailsScreenProps) => {
+export const DecisionDetailsScreen = ({ route, navigation }: ListingDetailsScreenProps) => {
   const { image, category, title, price, bathroom, bedroom, car, address, description } = route.params.details as House;
 
   return (

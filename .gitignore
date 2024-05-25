@@ -47,3 +47,4 @@ yarn-error.*
 # IDE
 .vscode
 .idea
+FastMove.code-workspace
