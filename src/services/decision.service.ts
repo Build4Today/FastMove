@@ -3,12 +3,13 @@ import { useToast } from "native-base";
 import { api } from "../helpers/api.helper";
 
 import { useToken } from "../hooks/token.hook";
-import { HouseQuery, HouseSearch, CreateHousePayload, UpdateHousePayload } from "../types/house.type";
+import { HouseQuery, HouseSearch, CreateHousePayload, UpdateHousePayload } from "../types/decision.type";
 
 export const FETCH_HOUSES_QUERY_KEY = "fetchHouses";
 export const FETCH_OWN_HOUSES_QUERY_KEY = "fetchOwnHouses";
 
-export const useFetchHouses = ({ search, category }: HouseSearch): HouseQuery => {
+// Speak to device's memory
+export const useFetchUserDecisions = ({ search, category }: HouseSearch): HouseQuery => {
   const token = useToken();
 
   const {

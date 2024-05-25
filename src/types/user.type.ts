@@ -1,19 +1,18 @@
-export interface SignInUserPayload {
+export interface SubscriptionPayload {
   email: string;
   password: string;
 }
 
-export type SignUpUserPayload = SignInUserPayload;
-
-export interface User {
+export interface Payment {
   id: string;
   email: string;
+  invoice_id: string;
   created_at: string;
   updated_at: string;
 }
 
 export interface UserQuery {
-  user: User;
+  user: Payment;
   isLoading: boolean;
   isFetching: boolean;
 }

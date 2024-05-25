@@ -4,9 +4,9 @@ import { useQueryClient } from "react-query";
 import { AntDesign } from "@expo/vector-icons";
 import { ListRenderItemInfo } from "react-native";
 
-import { useFetchHouses, FETCH_HOUSES_QUERY_KEY } from "../services/house.service";
-import { ListingCard } from "../components/ListingCard";
-import { House } from "../types/house.type";
+import { useFetchHouses, FETCH_HOUSES_QUERY_KEY } from "../services/decision.service";
+import { DecisionCard } from "../components/DecisionCard";
+import { House } from "../types/decision.type";
 import { ScreenName } from "../types/navigation.type";
 
 export const DecisionScreen = ({ navigation }: any) => {

@@ -1,22 +1,23 @@
 import React, { useState } from "react";
-import { Box, VStack, Heading, Text, Button, Pressable, Input, Icon } from "native-base";
+import { Box, VStack, HStack, Heading, Text, Button, Pressable, Input, Icon } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import { APP_NAME } from "@env";
 
 import { AppLogo } from "../components/AppLogo";
-import { useSignUp } from "../services/user.service";
-import { SignUpUserPayload } from "../types/user.type";
+import { useSignIn } from "../services/user.service";
+import { ScreenName } from "../types/navigation.type";
+import { SubscriptionPayload } from "../types/user.type";
 
-export const SignUpScreen = () => {
+export const SubscriptionInScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
 
-  const signUpMutation = useSignUp();
+  const signInMutation = useSignIn();
 
-  const onSignUp = () => {
-    const formData: SignUpUserPayload = { email, password };
-    signUpMutation.mutate(formData);
+  const onPurchase = () => {
+    const formData: SubscriptionPayload = { email, password };
+    signInMutation.mutate(formData);
   };
 
   return (
@@ -24,7 +25,7 @@ export const SignUpScreen = () => {
       <AppLogo name={`${APP_NAME}`} />
 
       <VStack space={2} mb={10}>
-        <Heading size="xl">Sign Up</Heading>
+        <Heading size="xl">Sign In</Heading>
         <Text fontSize="lg" mt={5} bold>
           Email
         </Text>
@@ -60,12 +61,22 @@ export const SignUpScreen = () => {
       <Button
         mt={5}
         _text={{ textTransform: "uppercase" }}
-        onPress={onSignUp}
+        onPress={onPurchase}
         isDisabled={!email || !password}
-        isLoading={signUpMutation.isLoading}
+        isLoading={signInMutation.isLoading}
       >
-        Sign Up
+        Subscribe
       </Button>
+
+      <HStack justifyContent="center" mt={5}>
+        <Text fontSize="lg">Don't have an account?</Text>
+
+        <Pressable ml={3} onPress={() => navigation.navigate(ScreenName.SIGN_UP)}>
+          <Text color="rose.600" fontSize="lg" bold underline>
+            Sign Up Today
+          </Text>
+        </Pressable>
+      </HStack>
     </Box>
   );
 };

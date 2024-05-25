@@ -3,24 +3,24 @@ import { Box, FlatList, Fab, VStack, Icon, Text } from "native-base";
 import { useQueryClient } from "react-query";
 import { AntDesign } from "@expo/vector-icons";
 
-import { useFetchOwnHouses, FETCH_OWN_HOUSES_QUERY_KEY } from "../services/house.service";
-import { ListingCard } from "../components/ListingCard";
-import { House } from "../types/house.type";
+import { useFetchOwnDecisions, FETCH_OWN_HOUSES_QUERY_KEY } from "../services/decision.service";
+import { DecisionCard } from "../components/DecisionCard"
+import { Decision } from "../types/decision.type";
 import { ScreenName } from "../types/navigation.type";
 
 export const DecisionHistoryScreen = ({ navigation }: any) => {
   const queryClient = useQueryClient();
-  const { house, isLoading, isFetching } = useFetchOwnHouses();
+  const { house, isLoading, isFetching } = useFetchOwnDecisions();
 
   return (
     <Box h="100%">
       <FlatList
         data={house}
-        keyExtractor={(item: House): any => item.id}
+        keyExtractor={(item: Decision): any => item.id}
         p={5}
         flexGrow={1}
         renderItem={({ item }) => (
-          <ListingCard item={item} onPress={() => navigation.navigate(ScreenName.LISTING_FORM, { details: item })} />
+          <DecisionCard item={item} onPress={() => navigation.navigate(ScreenName.LISTING_FORM, { details: item })} />
         )}
         refreshing={isLoading || isFetching}
         onRefresh={() => queryClient.refetchQueries([FETCH_OWN_HOUSES_QUERY_KEY])}
