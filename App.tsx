@@ -1,11 +1,11 @@
 import React from "react";
-import { NativeBaseProvider, Button, Icon } from "native-base";
+import { NativeBaseProvider, Icon, IconButton } from "native-base";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { DecisionDetailsScreen } from "./src/screens/DecisionDetailsScreen";
 import { DecisionHistoryScreen } from "./src/screens/DecisionHistoryScreen";
-import { UserDetailsScreen } from "./src/screens/UserDetailsScreen";
+import { PreferenceScreen } from "./src/screens/PreferenceScreen";
 
 const Stack = createStackNavigator();
 
@@ -20,22 +20,20 @@ export const App: React.FC = () => {
             options={({ navigation }) => ({
               title: "Make a Decision",
               headerLeft: () => (
-                <Button
-                  ml={4}
-                  leftIcon={<Icon as={MaterialIcons} name="person" size={6} />}
-                  onPress={() => navigation.navigate("UserDetails")}
-                >
-                  User Details
-                </Button>
+                <IconButton
+                  icon={<Icon as={Ionicons} name="menu" size={7} color="black" />}
+                  borderRadius="full"
+                  onPress={() => navigation.navigate("Preference")}
+                  ml={2}
+                />
               ),
               headerRight: () => (
-                <Button
-                  mr={4}
-                  leftIcon={<Icon as={MaterialIcons} name="history" size={6} />}
+                <IconButton
+                  icon={<Icon as={Ionicons} name="time-outline" size={7} color="black" />}
+                  borderRadius="full"
                   onPress={() => navigation.navigate("DecisionHistory")}
-                >
-                  History
-                </Button>
+                  mr={2}
+                />
               ),
             })}
           />
@@ -45,9 +43,9 @@ export const App: React.FC = () => {
             options={{ title: "Decision History" }}
           />
           <Stack.Screen
-            name="UserDetails"
-            component={UserDetailsScreen}
-            options={{ title: "User Details" }}
+            name="Preference"
+            component={PreferenceScreen}
+            options={{ title: "Preference" }}
           />
         </Stack.Navigator>
       </NavigationContainer>

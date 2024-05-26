@@ -41,7 +41,9 @@ export const PreferenceScreen: React.FC = () => {
 
   return (
     <VStack p={4} space={4}>
-      <Heading fontSize="2xl">Preference</Heading>
+      <Heading fontSize="2xl" mb={4}>
+        Preference
+      </Heading>
       <Box>
         <Text fontSize="lg" fontWeight="bold" mb={1}>
           Name
@@ -86,7 +88,7 @@ export const PreferenceScreen: React.FC = () => {
         />
       </Box>
       {/* Add more input fields for additional user details */}
-      <Button onPress={handleSave} colorScheme="blue">
+      <Button onPress={handleSave} colorScheme="blue" mt={4}>
         Save
       </Button>
     </VStack>

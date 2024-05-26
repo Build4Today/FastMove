@@ -67,7 +67,7 @@ export const DecisionDetailsScreen: React.FC = () => {
     <ScrollView>
       <Flex p={4} backgroundColor="white">
         <VStack space={4}>
-          <Heading fontSize="2xl" mb={2}>
+          <Heading fontSize="2xl" mb={4}>
             Make a Decision
           </Heading>
 
@@ -145,13 +145,13 @@ export const DecisionDetailsScreen: React.FC = () => {
           </Button>
 
           <Button onPress={handleSubmit} isLoading={isLoading} colorScheme="green">
-            Send
+            Submit
           </Button>
 
-          <Divider my={4} />
+          <Divider my={6} />
 
           {finalDecision !== 0 && (
-            <VStack space={2}>
+            <VStack space={4}>
               <Text fontSize="lg" fontWeight="bold">
                 Final Decision:
               </Text>
@@ -169,7 +169,7 @@ export const DecisionDetailsScreen: React.FC = () => {
             </VStack>
           )}
 
-          <Button onPress={() => navigation.navigate("DecisionHistory")} colorScheme="blue">
+          <Button onPress={() => navigation.navigate("DecisionHistory")} colorScheme="blue" mt={4}>
             View Decision History
           </Button>
         </VStack>

@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Input, Icon, Text, VStack } from "native-base";
+import { FlatList, Input, Icon, Text, VStack, Heading } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { getDecisions } from "../services/decision.service";
 import { Decision } from "../types/decision.type";
-import { useNavigation } from "@react-navigation/native";
+import { Box } from "native-base";
 
 export const DecisionHistoryScreen: React.FC = () => {
   const [decisions, setDecisions] = useState<Decision[]>([]);
   const [searchText, setSearchText] = useState<string>("");
   const [filteredDecisions, setFilteredDecisions] = useState<Decision[]>([]);
-  const navigation = useNavigation();
 
   useEffect(() => {
     fetchDecisions();
@@ -115,7 +114,7 @@ export const DecisionHistoryScreen: React.FC = () => {
         renderItem={renderDecisionItem}
         keyExtractor={(item, index) => index.toString()}
         ListEmptyComponent={
-          <Text textAlign="center" mt={10}>
+          <Text textAlign="center" mt={10} color="gray.500">
             No decisions found.
           </Text>
         }
