@@ -1,5 +1,4 @@
 import { Heading, VStack } from "native-base";
-
 import { AppIcon } from "./AppIcon";
 
 interface AppLogoProps {

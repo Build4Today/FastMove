@@ -6,13 +6,12 @@ import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 import * as LocalAuthentication from "expo-local-authentication";
 import { Alert, Icon } from "native-base";
 
-import { SignInScreen } from "./screens/SignInScreen";
-import { SignUpScreen } from "./screens/SignUpScreen";
 import { ProfileScreen } from "./screens/ProfileScreen";
-import { ListingScreen } from "./screens/ListingScreen";
 import { ExploreScreen } from "./screens/ExploreScreen";
 import { ListingDetailsScreen } from "./screens/ListingDetailsScreen";
 import { ListingFormScreen } from "./screens/ListingFormScreen";
+import { SignInScreen } from "./screens/SignInScreen";
+import { SignUpScreen } from "./screens/SignUpScreen";
 
 import { useFetchUser } from "./services/user.service";
 import { ScreenName } from "./types/navigation.type";
@@ -33,7 +32,7 @@ const HomeTabs = () => {
       />
       <Tab.Screen
         name="Listing"
-        component={ListingScreen}
+        component={ListingFormScreen}
         options={{
           tabBarIcon: (props) => <Icon as={AntDesign} name="home" {...props} />,
         }}
@@ -50,40 +49,33 @@ const HomeTabs = () => {
   );
 };
 
-const biometricAuthentication = (): boolean => {
+const biometricAuthentication = async (): Promise<boolean> => {
   try {
-    // Authenticate user
-    LocalAuthentication.isEnrolledAsync().then((isEnrolled) => {
-      if (isEnrolled) {
-        LocalAuthentication.authenticateAsync().then(({ success }) => {
-          if (success) {
-            // Biometric authentication successful, you can proceed
-            console.log("Authentication successful");
-
-            return true;
-          } else {
-            // Biometric authentication failed
-            console.log("Authentication failed");
-            Alert("Unable to authenticate your profile");
-
-            return false;
-          }
-        });
+    const isEnrolled = await LocalAuthentication.isEnrolledAsync();
+    if (isEnrolled) {
+      const { success } = await LocalAuthentication.authenticateAsync();
+      if (success) {
+        console.log("Authentication successful");
+        return true;
+      } else {
+        console.log("Authentication failed");
+        Alert.alert("Unable to authenticate your profile");
+        return false;
       }
-    });
+    }
+    return false;
   } catch (error) {
     console.error(error);
-  } finally {
     return false;
   }
 };
 
 export const AppNavigation = (): React.ReactElement => {
-  let { user } = useFetchUser();
+  const { user } = useFetchUser();
 
   return (
     <NavigationContainer>
-      {!user && biometricAuthentication() ? (
+      {user ? (
         <Stack.Navigator>
           <Stack.Screen name={ScreenName.HOME} component={HomeTabs} options={{ headerShown: false, title: "Home" }} />
           <Stack.Screen

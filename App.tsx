@@ -1,54 +1,62 @@
 import React from "react";
-import { NativeBaseProvider, Icon, IconButton } from "native-base";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { Ionicons } from "@expo/vector-icons";
-import { DecisionDetailsScreen } from "./src/screens/DecisionDetailsScreen";
-import { DecisionHistoryScreen } from "./src/screens/DecisionHistoryScreen";
-import { PreferenceScreen } from "./src/screens/PreferenceScreen";
+import { NativeBaseProvider, extendTheme } from "native-base";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { AppNavigation } from "./AppNavigation";
 
-const Stack = createStackNavigator();
+const queryClient: QueryClient = new QueryClient();
+
+const theme = extendTheme({
+  components: {
+    Button: {
+      defaultProps: {
+        fontWeight: "bold",
+        colorScheme: "rose",
+        size: "lg",
+        rounded: "3xl",
+      },
+    },
+    Input: {
+      defaultProps: {
+        size: "lg",
+        bg: "white",
+        p: "3",
+        rounded: "xl",
+        fontSize: "lg",
+        borderWidth: 0,
+        _focus: { borderWidth: 1, borderColor: "rose.400", bg: "white" },
+      },
+    },
+    Select: {
+      defaultProps: {
+        rounded: "lg",
+        size: "xl",
+        bg: "white",
+      },
+    },
+    IconButton: {
+      defaultProps: {
+        rounded: "md",
+        colorScheme: "rose.600",
+      },
+    },
+    TextArea: {
+      defaultProps: {
+        size: "bg",
+        bg: "white",
+        p: "3",
+        borderWidth: 0,
+        _focus: { borderWidth: 1, borderColor: "rose.400", bg: "white" },
+      },
+    },
+  },
+});
 
 export const App: React.FC = () => {
   return (
-    <NativeBaseProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="DecisionDetails"
-            component={DecisionDetailsScreen}
-            options={({ navigation }) => ({
-              title: "Make a Decision",
-              headerLeft: () => (
-                <IconButton
-                  icon={<Icon as={Ionicons} name="menu" size={7} color="black" />}
-                  borderRadius="full"
-                  onPress={() => navigation.navigate("Preference")}
-                  ml={2}
-                />
-              ),
-              headerRight: () => (
-                <IconButton
-                  icon={<Icon as={Ionicons} name="time-outline" size={7} color="black" />}
-                  borderRadius="full"
-                  onPress={() => navigation.navigate("DecisionHistory")}
-                  mr={2}
-                />
-              ),
-            })}
-          />
-          <Stack.Screen
-            name="DecisionHistory"
-            component={DecisionHistoryScreen}
-            options={{ title: "Decision History" }}
-          />
-          <Stack.Screen
-            name="Preference"
-            component={PreferenceScreen}
-            options={{ title: "Preference" }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </NativeBaseProvider>
+    <QueryClientProvider client={queryClient}>
+      <NativeBaseProvider theme={theme}>
+        <AppNavigation />
+      </NativeBaseProvider>
+    </QueryClientProvider>
   );
 };
