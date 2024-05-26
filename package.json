@@ -46,7 +46,7 @@
   "private": true,
   "volta": {
     "node": "18.17.1",
-    "yarn": "3.6.1"
+    "yarn": "3.8.2"
   },
   "packageManager": "yarn@3.6.1"
 }
