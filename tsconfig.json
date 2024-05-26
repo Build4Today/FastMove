@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
+    "moduleResolution": "node",
     "target": "es6",
     "module": "esnext",
     "jsx": "react-native",
