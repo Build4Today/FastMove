@@ -3,7 +3,7 @@ import { QueryClient, useMutation, useQuery, useQueryClient } from "react-query"
 import * as SecureStore from "expo-secure-store";
 
 import { api } from "../helpers/api.helper";
-import { SignUpUserPayload, SignInUserPayload, UserQuery } from "../types/user.type";
+import { UserQuery } from "../types/user.type";
 
 import { useToken, TOKEN_QUERY_KEY } from "../hooks/token.hook";
 
