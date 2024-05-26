@@ -12,21 +12,20 @@
     "prettier:fix": "prettier --ignore-path .prettierignore --write '**/*.{js,jsx,ts,tsx,json,md}'"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.23.1",
+    "@react-native-async-storage/async-storage": "1.18.2",
     "@react-navigation/bottom-tabs": "^6.5.8",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.13",
     "@react-navigation/stack": "^6.3.29",
     "axios": "^1.7.2",
     "expo": "~49.0.7",
-    "expo-image-picker": "^15.0.5",
-    "expo-local-authentication": "^13.6.0",
-    "expo-secure-store": "^12.5.0",
+    "expo-local-authentication": "~13.4.1",
+    "expo-secure-store": "~12.3.1",
     "expo-status-bar": "~1.6.0",
     "expo-text-recognition": "^0.1.0",
     "native-base": "^3.4.28",
-    "react": "^18.3.1",
-    "react-native-gesture-handler": "^2.16.2",
+    "react": "18.2.0",
+    "react-native-gesture-handler": "~2.12.0",
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
     "react-query": "^3.39.3"
@@ -35,7 +34,7 @@
     "@babel/core": "^7.20.0",
     "@tsconfig/react-native": "^3.0.2",
     "@types/jest": "^29.5.3",
-    "@types/react": "^18.2.20",
+    "@types/react": "~18.2.14",
     "@types/react-native": "^0.73.0",
     "@types/react-navigation": "^3.4.0",
     "@types/react-test-renderer": "^18.0.0",
@@ -45,8 +44,8 @@
   },
   "private": true,
   "volta": {
-    "node": "18.17.1",
-    "yarn": "3.8.2"
+    "node": "20.13.1",
+    "yarn": "4.2.2"
   },
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@4.2.2"
 }
