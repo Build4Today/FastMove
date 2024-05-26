@@ -40,9 +40,12 @@ yarn-error.*
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
-!.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# lock yarn versions to prevent issues if two Yarn versions are being used
+!.yarn/releases
+
 
 # IDE
 .vscode

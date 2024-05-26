@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Flex, Text, VStack, Heading, Divider, Button, useToast, Input, ScrollView, Textarea } from "native-base";
+import { Box, Flex, Text, VStack, Heading, Divider, Button, useToast, Input, ScrollView, TextArea } from "native-base";
 import { makeDecision } from "../services/ai-api.service";
 import { performOCR } from "../services/ocr.service";
 import { saveDecision } from "../services/decision.service";
@@ -24,13 +24,13 @@ export const DecisionDetailsScreen: React.FC = () => {
       setDecisionA(scannedText);
     } catch (error) {
       console.error("OCR Error:", error);
-      toast.show({ title: "OCR Error", status: "error" });
+      toast.show({ title: "OCR Error" });
     }
   };
 
   const handleSubmit = async () => {
     if (!decisionA || !decisionB || !userDetails || !userNeeds) {
-      toast.show({ title: "Please fill in all fields", status: "warning" });
+      toast.show({ title: "Please fill in all fields" });
       return;
     }
 
@@ -54,10 +54,10 @@ export const DecisionDetailsScreen: React.FC = () => {
 
       await saveDecision(decisionData);
 
-      toast.show({ title: "Decision submitted successfully", status: "success" });
+      toast.show({ title: "Decision submitted successfully" });
     } catch (error) {
       console.error("Error:", error);
-      toast.show({ title: "Error submitting decision", status: "error" });
+      toast.show({ title: "Error submitting decision" });
     }
 
     setIsLoading(false);
@@ -107,7 +107,8 @@ export const DecisionDetailsScreen: React.FC = () => {
             <Text fontSize="lg" fontWeight="bold" mb={1}>
               Decision A
             </Text>
-            <Textarea
+            <TextArea
+              autoCompleteType='' /* why this */
               value={decisionA}
               onChangeText={setDecisionA}
               placeholder="Enter Decision A"
@@ -124,15 +125,17 @@ export const DecisionDetailsScreen: React.FC = () => {
             <Text fontSize="lg" fontWeight="bold" mb={1}>
               Decision B
             </Text>
-            <Textarea
+            <TextArea
+              autoCompleteType='' /* why this */
               value={decisionB}
               onChangeText={setDecisionB}
               placeholder="Enter Decision B"
-              backgroundColor="white"
               borderWidth={1}
               borderColor="gray.300"
               rounded="md"
               p={2}
+              w="75%"
+              maxW="300"
               minHeight={100}
             />
           </Box>
@@ -142,7 +145,7 @@ export const DecisionDetailsScreen: React.FC = () => {
           </Button>
 
           <Button onPress={handleSubmit} isLoading={isLoading} colorScheme="green">
-            Submit
+            Send
           </Button>
 
           <Divider my={4} />
