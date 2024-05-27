@@ -6380,6 +6380,7 @@ __metadata:
   resolution: "frontend-client@workspace:."
   dependencies:
     "@babel/core": "npm:^7.20.0"
+    "@babel/plugin-transform-private-methods": "npm:^7.24.6"
     "@react-native-async-storage/async-storage": "npm:1.18.2"
     "@react-navigation/bottom-tabs": "npm:^6.5.8"
     "@react-navigation/native": "npm:^6.1.17"
