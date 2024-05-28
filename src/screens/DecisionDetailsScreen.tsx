@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { TextInput } from "react-native";
 import { Box, Flex, Text, VStack, Heading, Divider, Button, useToast, Input, ScrollView, TextArea } from "native-base";
 import { Camera } from "expo-camera";
+import * as ImagePicker from "expo-image-picker";
 import * as TextRecognition from "expo-text-recognition";
 import { makeDecision } from "../services/ai-api.service";
 import { saveDecision } from "../services/decision.service";
@@ -19,25 +20,23 @@ export const DecisionDetailsScreen: React.FC = () => {
   const [userNeeds, setUserNeeds] = useState<string>("");
   const toast = useToast();
   const navigation = useNavigation();
-  const cameraRef = useRef<Camera>(null);
 
   const handleOCR = async () => {
     try {
-      const { status } = await Camera.requestCameraPermissionsAsync();
+      const { status } = await ImagePicker.requestCameraPermissionsAsync();
       if (status !== "granted") {
         throw new Error("Camera permission not granted");
       }
 
-      if (cameraRef.current) {
-        const { base64 } = await cameraRef.current.takePictureAsync({
-          quality: 1,
-          base64: true,
-        });
+      const result = await ImagePicker.launchCameraAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+        base64: true,
+      });
 
-        if (base64) {
-          const { text } = await TextRecognition.recognizeText(base64);
-          setDecisionA(text);
-        }
+      if (!result.cancelled && result.base64) {
+        const { text } = await TextRecognition.recognizeText(result.base64);
+        setDecisionA(text);
       }
     } catch (error) {
       console.error("OCR Error:", error);
@@ -156,15 +155,9 @@ export const DecisionDetailsScreen: React.FC = () => {
             />
           </Box>
 
-          <Box>
-            <Text fontSize="lg" fontWeight="bold" mb={1}>
-              Scan Decision A
-            </Text>
-            <Camera ref={cameraRef} style={{ flex: 1, aspectRatio: 1 }} />
-            <Button onPress={handleOCR} colorScheme="blue" mt={2}>
-              Scan Text (OCR)
-            </Button>
-          </Box>
+          <Button onPress={handleOCR} colorScheme="blue" mb={4}>
+            Scan Text (OCR)
+          </Button>
 
           <Button onPress={handleSubmit} isLoading={isLoading} colorScheme="green">
             Submit
