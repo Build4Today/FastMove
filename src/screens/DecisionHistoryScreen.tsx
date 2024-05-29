@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Input, Icon, Text, VStack, Heading } from "native-base";
+import { FlatList, Input, Icon, Text, VStack, Heading, Box } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { getDecisions } from "../services/decision.service";
 import { Decision } from "../types/decision.type";
-import { Box } from "native-base";
 
 export const DecisionHistoryScreen: React.FC = () => {
   const [decisions, setDecisions] = useState<Decision[]>([]);
@@ -24,6 +23,7 @@ export const DecisionHistoryScreen: React.FC = () => {
       setDecisions(storedDecisions);
     } catch (error) {
       console.error("Error fetching decisions:", error);
+      // TODO: Display error message to the user
     }
   };
 
@@ -108,6 +108,8 @@ export const DecisionHistoryScreen: React.FC = () => {
         InputLeftElement={
           <Icon as={<Ionicons name="search" />} size={5} ml={2} color="muted.400" />
         }
+        accessibilityLabel="Search decisions"
+        accessibilityHint="Enter search keywords"
       />
       <FlatList
         data={filteredDecisions}
@@ -118,6 +120,8 @@ export const DecisionHistoryScreen: React.FC = () => {
             No decisions found.
           </Text>
         }
+        accessibilityLabel="Decision history list"
+        accessibilityHint="List of past decisions"
       />
     </VStack>
   );

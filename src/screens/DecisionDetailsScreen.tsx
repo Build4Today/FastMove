@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextArea, Box, Flex, Text, VStack, Heading, Divider, Button, useToast, Input, ScrollView } from "native-base";
+import { TextArea, Box, Flex, Text, VStack, Heading, Divider, Button, useToast, Input, ScrollView, Spinner } from "native-base";
 import * as ImagePicker from "expo-image-picker";
 import * as TextRecognition from "expo-text-recognition";
 import { makeDecision } from "../services/ai-api.service";
@@ -24,7 +24,13 @@ export const DecisionDetailsScreen: React.FC = () => {
     try {
       const { status } = await ImagePicker.requestCameraPermissionsAsync();
       if (status !== "granted") {
-        toast.show({ title: "Camera permission not granted", status: "error" });
+        toast.show({
+          title: "Camera permission denied",
+          description: "Please grant camera permission to use OCR.",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
         return;
       }
 
@@ -44,13 +50,25 @@ export const DecisionDetailsScreen: React.FC = () => {
       }
     } catch (error) {
       console.error("OCR Error:", error);
-      toast.show({ title: "OCR Error", status: "error" });
+      toast.show({
+        title: "OCR Error",
+        description: "An error occurred while performing OCR.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   };
 
   const handleSubmit = async () => {
     if (!decisionA || !decisionB || !userDetails || !userNeeds) {
-      toast.show({ title: "Please fill in all fields", status: "warning" });
+      toast.show({
+        title: "Missing Fields",
+        description: "Please fill in all fields before submitting.",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+      });
       return;
     }
 
@@ -74,10 +92,22 @@ export const DecisionDetailsScreen: React.FC = () => {
 
       await saveDecision(decisionData);
 
-      toast.show({ title: "Decision submitted successfully", status: "success" });
+      toast.show({
+        title: "Decision Submitted",
+        description: "Your decision has been successfully submitted.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
     } catch (error) {
       console.error("Error:", error);
-      toast.show({ title: "Error submitting decision", status: "error" });
+      toast.show({
+        title: "Submission Error",
+        description: "An error occurred while submitting the decision.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
 
     setIsLoading(false);
@@ -104,6 +134,8 @@ export const DecisionDetailsScreen: React.FC = () => {
               borderColor="gray.300"
               rounded="md"
               p={2}
+              accessibilityLabel="User details input"
+              accessibilityHint="Enter details about yourself"
             />
           </Box>
 
@@ -120,6 +152,8 @@ export const DecisionDetailsScreen: React.FC = () => {
               borderColor="gray.300"
               rounded="md"
               p={2}
+              accessibilityLabel="User needs input"
+              accessibilityHint="Enter your needs"
             />
           </Box>
 
@@ -138,6 +172,8 @@ export const DecisionDetailsScreen: React.FC = () => {
               p={2}
               minHeight={100}
               autoCompleteType=""
+              accessibilityLabel="Decision A input"
+              accessibilityHint="Enter decision option A"
             />
             <Button onPress={() => handleOCR("decisionA")} colorScheme="blue" mt={2}>
               Scan Decision A (OCR)
@@ -159,14 +195,16 @@ export const DecisionDetailsScreen: React.FC = () => {
               p={2}
               minHeight={100}
               autoCompleteType=""
+              accessibilityLabel="Decision B input"
+              accessibilityHint="Enter decision option B"
             />
             <Button onPress={() => handleOCR("decisionB")} colorScheme="blue" mt={2}>
               Scan Decision B (OCR)
             </Button>
           </Box>
 
-          <Button onPress={handleSubmit} isLoading={isLoading} colorScheme="green">
-            Submit
+          <Button onPress={handleSubmit} colorScheme="green" isDisabled={isLoading}>
+            {isLoading ? <Spinner color="white" /> : "Submit"}
           </Button>
 
           <Divider my={6} />

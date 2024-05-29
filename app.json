@@ -14,13 +14,21 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "infoPlist.NSFaceIDUsageDescription": true
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan text for decision-making.",
+        "NSPhotoLibraryUsageDescription": "This app uses the photo library to select images for decision-making."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
