@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { TextInput } from "react-native";
 import { Box, Flex, Text, VStack, Heading, Divider, Button, useToast, Input, ScrollView, TextArea } from "native-base";
+import { Camera } from "expo-camera";
+import * as TextRecognition from "expo-text-recognition";
 import { makeDecision } from "../services/ai-api.service";
-import { performOCR } from "../services/ocr.service";
 import { saveDecision } from "../services/decision.service";
 import { Decision } from "../types/decision.type";
 import { useNavigation } from "@react-navigation/native";
@@ -17,20 +19,35 @@ export const DecisionDetailsScreen: React.FC = () => {
   const [userNeeds, setUserNeeds] = useState<string>("");
   const toast = useToast();
   const navigation = useNavigation();
+  const cameraRef = useRef<Camera>(null);
 
   const handleOCR = async () => {
     try {
-      const scannedText = await performOCR();
-      setDecisionA(scannedText);
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      if (status !== "granted") {
+        throw new Error("Camera permission not granted");
+      }
+
+      if (cameraRef.current) {
+        const { base64 } = await cameraRef.current.takePictureAsync({
+          quality: 1,
+          base64: true,
+        });
+
+        if (base64) {
+          const { text } = await TextRecognition.recognizeText(base64);
+          setDecisionA(text);
+        }
+      }
     } catch (error) {
       console.error("OCR Error:", error);
-      toast.show({ title: "OCR Error" });
+      toast.show({ title: "OCR Error", status: "error" });
     }
   };
 
   const handleSubmit = async () => {
     if (!decisionA || !decisionB || !userDetails || !userNeeds) {
-      toast.show({ title: "Please fill in all fields" });
+      toast.show({ title: "Please fill in all fields", status: "warning" });
       return;
     }
 
@@ -54,10 +71,10 @@ export const DecisionDetailsScreen: React.FC = () => {
 
       await saveDecision(decisionData);
 
-      toast.show({ title: "Decision submitted successfully" });
+      toast.show({ title: "Decision submitted successfully", status: "success" });
     } catch (error) {
       console.error("Error:", error);
-      toast.show({ title: "Error submitting decision" });
+      toast.show({ title: "Error submitting decision", status: "error" });
     }
 
     setIsLoading(false);
@@ -108,7 +125,6 @@ export const DecisionDetailsScreen: React.FC = () => {
               Decision A
             </Text>
             <TextArea
-              autoCompleteType='' /* why this */
               value={decisionA}
               onChangeText={setDecisionA}
               placeholder="Enter Decision A"
@@ -118,6 +134,7 @@ export const DecisionDetailsScreen: React.FC = () => {
               rounded="md"
               p={2}
               minHeight={100}
+              autoCompleteType=""
             />
           </Box>
 
@@ -126,23 +143,28 @@ export const DecisionDetailsScreen: React.FC = () => {
               Decision B
             </Text>
             <TextArea
-              autoCompleteType='' /* why this */
               value={decisionB}
               onChangeText={setDecisionB}
               placeholder="Enter Decision B"
+              backgroundColor="white"
               borderWidth={1}
               borderColor="gray.300"
               rounded="md"
               p={2}
-              w="75%"
-              maxW="300"
               minHeight={100}
+              autoCompleteType=""
             />
           </Box>
 
-          <Button onPress={handleOCR} colorScheme="blue" mb={4}>
-            Scan Text (OCR)
-          </Button>
+          <Box>
+            <Text fontSize="lg" fontWeight="bold" mb={1}>
+              Scan Decision A
+            </Text>
+            <Camera ref={cameraRef} style={{ flex: 1, aspectRatio: 1 }} />
+            <Button onPress={handleOCR} colorScheme="blue" mt={2}>
+              Scan Text (OCR)
+            </Button>
+          </Box>
 
           <Button onPress={handleSubmit} isLoading={isLoading} colorScheme="green">
             Submit
