@@ -1,31 +1,31 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import { DecisionDetailsScreen } from "./screens/DecisionDetailsScreen";
 import { DecisionHistoryScreen } from "./screens/DecisionHistoryScreen";
 import { PreferenceScreen } from "./screens/PreferenceScreen";
 import { ScreenName } from "./types/navigation.type";
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
-export const AppNavigation = (): React.ReactElement => {
+export const AppNavigation: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
           name={ScreenName.DECISION_DETAILS}
           component={DecisionDetailsScreen}
-          options={{ headerTitle: "Make a Decision" }}
+          options={{ title: "Make a Decision" }}
         />
         <Stack.Screen
           name={ScreenName.DECISION_HISTORY}
           component={DecisionHistoryScreen}
-          options={{ headerTitle: "Decision History" }}
+          options={{ title: "Decision History" }}
         />
         <Stack.Screen
           name={ScreenName.PREFERENCE}
           component={PreferenceScreen}
-          options={{ headerTitle: "Preference" }}
+          options={{ title: "Preferences" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

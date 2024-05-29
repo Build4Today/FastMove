@@ -1,12 +1,12 @@
-import React, { useState, useRef } from "react";
-import { TextInput } from "react-native";
-import { Box, Flex, Text, VStack, Heading, Divider, Button, useToast, Input, ScrollView, TextArea } from "native-base";
-import { Camera } from "expo-camera";
+import React, { useState } from "react";
+import { TextArea, Box, Flex, Text, VStack, Heading, Divider, Button, useToast, Input, ScrollView } from "native-base";
+import * as ImagePicker from "expo-image-picker";
 import * as TextRecognition from "expo-text-recognition";
 import { makeDecision } from "../services/ai-api.service";
 import { saveDecision } from "../services/decision.service";
 import { Decision } from "../types/decision.type";
 import { useNavigation } from "@react-navigation/native";
+import { ScreenName } from "../types/navigation.type";
 
 export const DecisionDetailsScreen: React.FC = () => {
   const [decisionA, setDecisionA] = useState<string>("");
@@ -19,24 +19,27 @@ export const DecisionDetailsScreen: React.FC = () => {
   const [userNeeds, setUserNeeds] = useState<string>("");
   const toast = useToast();
   const navigation = useNavigation();
-  const cameraRef = useRef<Camera>(null);
 
-  const handleOCR = async () => {
+  const handleOCR = async (field: "decisionA" | "decisionB") => {
     try {
-      const { status } = await Camera.requestCameraPermissionsAsync();
+      const { status } = await ImagePicker.requestCameraPermissionsAsync();
       if (status !== "granted") {
-        throw new Error("Camera permission not granted");
+        toast.show({ title: "Camera permission not granted", status: "error" });
+        return;
       }
 
-      if (cameraRef.current) {
-        const { base64 } = await cameraRef.current.takePictureAsync({
-          quality: 1,
-          base64: true,
-        });
+      const result = await ImagePicker.launchCameraAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 1,
+        base64: true,
+      });
 
-        if (base64) {
-          const { text } = await TextRecognition.recognizeText(base64);
+      if (!result.cancelled && result.base64) {
+        const { text } = await TextRecognition.recognizeText(result.base64);
+        if (field === "decisionA") {
           setDecisionA(text);
+        } else {
+          setDecisionB(text);
         }
       }
     } catch (error) {
@@ -136,6 +139,9 @@ export const DecisionDetailsScreen: React.FC = () => {
               minHeight={100}
               autoCompleteType=""
             />
+            <Button onPress={() => handleOCR("decisionA")} colorScheme="blue" mt={2}>
+              Scan Decision A (OCR)
+            </Button>
           </Box>
 
           <Box>
@@ -154,15 +160,8 @@ export const DecisionDetailsScreen: React.FC = () => {
               minHeight={100}
               autoCompleteType=""
             />
-          </Box>
-
-          <Box>
-            <Text fontSize="lg" fontWeight="bold" mb={1}>
-              Scan Decision A
-            </Text>
-            <Camera ref={cameraRef} style={{ flex: 1, aspectRatio: 1 }} />
-            <Button onPress={handleOCR} colorScheme="blue" mt={2}>
-              Scan Text (OCR)
+            <Button onPress={() => handleOCR("decisionB")} colorScheme="blue" mt={2}>
+              Scan Decision B (OCR)
             </Button>
           </Box>
 
@@ -191,7 +190,7 @@ export const DecisionDetailsScreen: React.FC = () => {
             </VStack>
           )}
 
-          <Button onPress={() => navigation.navigate("DecisionHistory")} colorScheme="blue" mt={4}>
+          <Button onPress={() => navigation.navigate(ScreenName.DECISION_HISTORY)} colorScheme="blue" mt={4}>
             View Decision History
           </Button>
         </VStack>
