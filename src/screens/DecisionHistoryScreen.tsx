@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Input, Icon, Text, VStack, Heading, Box } from "native-base";
+import { FlatList, Input, Icon, Text, VStack, Heading, Spinner } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { getDecisions } from "../services/decision.service";
 import { Decision } from "../types/decision.type";
+import { Box } from "native-base";
 
 export const DecisionHistoryScreen: React.FC = () => {
   const [decisions, setDecisions] = useState<Decision[]>([]);
   const [searchText, setSearchText] = useState<string>("");
   const [filteredDecisions, setFilteredDecisions] = useState<Decision[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchDecisions();
@@ -21,9 +23,10 @@ export const DecisionHistoryScreen: React.FC = () => {
     try {
       const storedDecisions = await getDecisions();
       setDecisions(storedDecisions);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching decisions:", error);
-      // TODO: Display error message to the user
+      setIsLoading(false);
     }
   };
 
@@ -109,20 +112,21 @@ export const DecisionHistoryScreen: React.FC = () => {
           <Icon as={<Ionicons name="search" />} size={5} ml={2} color="muted.400" />
         }
         accessibilityLabel="Search decisions"
-        accessibilityHint="Enter search keywords"
       />
-      <FlatList
-        data={filteredDecisions}
-        renderItem={renderDecisionItem}
-        keyExtractor={(item, index) => index.toString()}
-        ListEmptyComponent={
-          <Text textAlign="center" mt={10} color="gray.500">
-            No decisions found.
-          </Text>
-        }
-        accessibilityLabel="Decision history list"
-        accessibilityHint="List of past decisions"
-      />
+      {isLoading ? (
+        <Spinner size="lg" color="blue.500" />
+      ) : (
+        <FlatList
+          data={filteredDecisions}
+          renderItem={renderDecisionItem}
+          keyExtractor={(item, index) => index.toString()}
+          ListEmptyComponent={
+            <Text textAlign="center" mt={10} color="gray.500">
+              No decisions found.
+            </Text>
+          }
+        />
+      )}
     </VStack>
   );
 };
