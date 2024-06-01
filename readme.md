@@ -1,6 +1,6 @@
 # 🚀 AI Native Mobile App
 
-React Native app, built with TypeScript 5 and Yarn 3 (berry). This mobile app uses NativeBase for the UI and communicates to a Rails backend API where it will generate the AI data and render back to the app.
+React Native app, built with TypeScript 5 and Yarn 4. This mobile app uses NativeBase for the UI 🚀
 
 
 ### Requirements
