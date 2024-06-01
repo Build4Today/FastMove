@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Decision } from "../types/decision.type";
 import { LocalStorageKeys } from "../types/localStorageKeys";
 
-export const saveDecision = async (decision: Decision) => {
+export const saveDecision = async (decision: Decision): Promise<void> => {
   try {
     const existingDecisions = await getDecisions();
     const updatedDecisions = [...existingDecisions, decision];
