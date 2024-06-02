@@ -1,7 +1,19 @@
 import React, { useState } from "react";
-import { TextArea, Box, Flex, Text, VStack, Heading, Divider, Button, useToast, Input, ScrollView, Spinner } from "native-base";
+import {
+  TextArea,
+  Box,
+  Flex,
+  Text,
+  VStack,
+  Heading,
+  Divider,
+  Button,
+  useToast,
+  Input,
+  ScrollView,
+  Spinner,
+} from "native-base";
 import * as ImagePicker from "expo-image-picker";
-import * as TextRecognition from "expo-text-recognition";
 import { makeDecision } from "../services/ai-api.service";
 import { saveDecision } from "../services/decision.service";
 import { Decision } from "../types/decision.type";
@@ -27,7 +39,6 @@ export const DecisionDetailsScreen: React.FC = () => {
         toast.show({
           title: "Camera permission denied",
           description: "Please grant camera permission to use OCR.",
-          status: "error",
           duration: 3000,
           isClosable: true,
         });
@@ -40,7 +51,7 @@ export const DecisionDetailsScreen: React.FC = () => {
         base64: true,
       });
 
-      if (!result.cancelled && result.base64) {
+      if (!result.canceled && result.assets.length > 0) {
         const { text } = await TextRecognition.recognizeText(result.base64);
         if (field === "decisionA") {
           setDecisionA(text);
@@ -53,9 +64,7 @@ export const DecisionDetailsScreen: React.FC = () => {
       toast.show({
         title: "OCR Error",
         description: "An error occurred while performing OCR.",
-        status: "error",
         duration: 3000,
-        isClosable: true,
       });
     }
   };
@@ -65,9 +74,7 @@ export const DecisionDetailsScreen: React.FC = () => {
       toast.show({
         title: "Missing Fields",
         description: "Please fill in all fields before submitting.",
-        status: "warning",
         duration: 3000,
-        isClosable: true,
       });
       return;
     }
@@ -95,18 +102,14 @@ export const DecisionDetailsScreen: React.FC = () => {
       toast.show({
         title: "Decision Submitted",
         description: "Your decision has been successfully submitted.",
-        status: "success",
         duration: 3000,
-        isClosable: true,
       });
     } catch (error) {
       console.error("Error:", error);
       toast.show({
         title: "Submission Error",
         description: "An error occurred while submitting the decision.",
-        status: "error",
         duration: 3000,
-        isClosable: true,
       });
     }
 

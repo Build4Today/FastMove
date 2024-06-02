@@ -5,7 +5,6 @@ module.exports = function (api) {
     presets: ["babel-preset-expo"],
     plugins: [
       [
-        '@babel/plugin-transform-private-methods',
         "module:react-native-dotenv",
         {
           envName: "APP_ENV",
