@@ -1,5 +1,5 @@
 export interface Decision {
-  id: string;
+  id?: string;
   decisionA: string;
   decisionB: string;
   finalDecision: number;
