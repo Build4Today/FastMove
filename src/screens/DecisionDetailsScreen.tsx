@@ -19,6 +19,9 @@ import { saveDecision } from "../services/decision.service";
 import { Decision } from "../types/decision.type";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenName } from "../types/navigation.type";
+import { Camera } from 'expo-camera';
+import * as ImageManipulator from 'expo-image-manipulator';
+import { recogniseText } from 'react-native-ml-kit';
 
 export const DecisionDetailsScreen: React.FC = () => {
   const [decisionA, setDecisionA] = useState<string>("");
@@ -34,7 +37,7 @@ export const DecisionDetailsScreen: React.FC = () => {
 
   const handleOCR = async (field: "decisionA" | "decisionB") => {
     try {
-      const { status } = await ImagePicker.requestCameraPermissionsAsync();
+      const { status } = await Camera.requestCameraPermissionsAsync();
       if (status !== "granted") {
         toast.show({
           title: "Camera permission denied",
@@ -51,12 +54,20 @@ export const DecisionDetailsScreen: React.FC = () => {
         base64: true,
       });
 
-      if (!result.canceled && result.assets.length > 0) {
-        const { text } = await TextRecognition.recognizeText(result.base64);
+      if (!result.cancelled && result.uri) {
+        const manipulatedImage = await ImageManipulator.manipulateAsync(
+          result.uri,
+          [],
+          { base64: true }
+        );
+        
+        const textRecognitionResult = await recogniseText(manipulatedImage.base64);
+        const recognisedText = textRecognitionResult.blocks.map(block => block.text).join(' ');
+
         if (field === "decisionA") {
-          setDecisionA(text);
+          setDecisionA(recognisedText);
         } else {
-          setDecisionB(text);
+          setDecisionB(recognisedText);
         }
       }
     } catch (error) {
