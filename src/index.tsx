@@ -1,7 +1,9 @@
 import React from "react";
-import { AppNavigation } from "./AppNavigation";
 import { NativeBaseProvider, extendTheme } from "native-base";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Box } from "native-base";
+
+import { AppNavigation } from "./AppNavigation";
 
 const queryClient: QueryClient = new QueryClient();
 
@@ -51,12 +53,14 @@ const theme = extendTheme({
   },
 });
 
-export default function App() {
+export const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <NativeBaseProvider theme={theme}>
-        <AppNavigation />
+        <Box flex={1} bg="lightBlue.500">
+          <AppNavigation />
+        </Box>
       </NativeBaseProvider>
     </QueryClientProvider>
   );
-}
+};

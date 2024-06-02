@@ -116,7 +116,7 @@ export const DecisionDetailsScreen: React.FC = () => {
             />
           </Box>
 
-          <Box m={4}>
+          <Box mb={4}>
             <Text fontSize="xl" fontWeight="bold" mb={2} color="blue.500">
               Your Needs
             </Text>
@@ -134,7 +134,7 @@ export const DecisionDetailsScreen: React.FC = () => {
             />
           </Box>
 
-          <Box m={4}>
+          <Box mb={4}>
             <Text fontSize="xl" fontWeight="bold" mb={2} color="blue.500">
               Decision A
             </Text>
@@ -154,7 +154,7 @@ export const DecisionDetailsScreen: React.FC = () => {
             />
           </Box>
 
-          <Box m={4}>
+          <Box mb={4}>
             <Text fontSize="xl" fontWeight="bold" mb={2} color="blue.500">
               Decision B
             </Text>
