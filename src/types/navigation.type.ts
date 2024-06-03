@@ -1,5 +1,6 @@
 export enum ScreenName {
-  DECISION_DETAILS = "DecisionDetails",
-  DECISION_HISTORY = "DecisionHistory",
-  PREFERENCE = "Preference",
+  DECISION_DETAILS = "Decision Details",
+  DECISION_HISTORY = "Decision History",
+  PREFERENCE = "Preferences",
+  TELL_ABOUT_YOURSELF = "Tell About Yourself",
 }

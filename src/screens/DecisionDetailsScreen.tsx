@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import {
   TextArea,
   Box,
@@ -12,11 +12,15 @@ import {
   Input,
   ScrollView,
   Spinner,
+  IconButton,
+  Icon,
 } from "native-base";
+import { useNavigation } from "@react-navigation/native";
+import { MaterialIcons } from '@expo/vector-icons';
+
 import { makeDecision } from "../services/ai-api.service";
 import { saveDecision } from "../services/decision.service";
 import { Decision } from "../types/decision.type";
-import { useNavigation } from "@react-navigation/native";
 import { ScreenName } from "../types/navigation.type";
 
 export const DecisionDetailsScreen: React.FC = () => {
@@ -28,8 +32,23 @@ export const DecisionDetailsScreen: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userDetails, setUserDetails] = useState<string>("");
   const [userNeeds, setUserNeeds] = useState<string>("");
+  
   const toast = useToast();
   const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <IconButton
+          icon={<Icon as={MaterialIcons} name="more-vert" />}
+          onPress={() => navigation.navigate(ScreenName.TELL_ABOUT_YOURSELF as never)}
+          variant="unstyled"
+          rounded={50}
+          size="lg"
+        />
+      ),
+    });
+  }, [navigation]);
 
   const handleReset = () => {
     setDecisionA("");
