@@ -24,18 +24,18 @@ export const PreferenceScreen: React.FC = () => {
       setUserDetails(storedUserDetails);
     } catch (error) {
       console.error("Error fetching user details:", error);
-      toast.show({ title: "Error fetching user details", status: "error" });
+      toast.show({ title: "Error fetching user details" });
     }
   };
 
   const handleSave = async () => {
     try {
       await updateUserDetails(userDetails);
-      toast.show({ title: "User details updated successfully", status: "success" });
+      toast.show({ title: "User details updated successfully" });
       navigation.goBack();
     } catch (error) {
       console.error("Error updating user details:", error);
-      toast.show({ title: "Error updating user details", status: "error" });
+      toast.show({ title: "Error updating user details"});
     }
   };
 
