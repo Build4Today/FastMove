@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { LocalStorageKeys } from "../types/localStorageKeys";
-import { Box, Heading, TextArea, useToast } from "native-base";
+import { Box, Heading, TextArea, useToast, Button } from "native-base";
 
 const TellAboutYourselfButton = () => {
   const navigation = useNavigation();
@@ -37,19 +36,21 @@ const TellAboutYourselfScreen = () => {
         About Yourself
       </Heading>
       <TextArea
-        multiline
-        numberOfLines={4}
-        onChangeText={setAboutYourself}
         value={aboutYourself}
+        onChangeText={setAboutYourself}
         placeholder="Tell us about yourself"
-        borderColor="gray.300"
+        backgroundColor="white"
         borderWidth={1}
+        borderColor="gray.300"
         rounded="md"
-        p={2}
+        p={3}
+        minHeight={100}
+        autoCompleteType=""
         accessibilityLabel="User details input"
         accessibilityHint="Enter details about yourself"
       />
-      <Button mt={4} onPress={handleSave}>
+
+      <Button onPress={handleSave} colorScheme="blue" mt={4} mb={4} size="lg">
         Save
       </Button>
     </Box>
