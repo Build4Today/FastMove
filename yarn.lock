@@ -3696,7 +3696,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-navigation/native-stack@npm:^6.9.13":
+"@react-navigation/native-stack@npm:^6.9.26":
   version: 6.9.26
   resolution: "@react-navigation/native-stack@npm:6.9.26"
   dependencies:
@@ -6631,7 +6631,7 @@ __metadata:
     "@react-native-firebase/ml": "npm:^20.0.0"
     "@react-navigation/bottom-tabs": "npm:^6.5.8"
     "@react-navigation/native": "npm:^6.1.17"
-    "@react-navigation/native-stack": "npm:^6.9.13"
+    "@react-navigation/native-stack": "npm:^6.9.26"
     "@react-navigation/stack": "npm:^6.3.29"
     "@tsconfig/react-native": "npm:^3.0.2"
     "@types/jest": "npm:^29.5.3"
@@ -6655,7 +6655,7 @@ __metadata:
     react-native-ml-kit: "npm:^0.0.1"
     react-native-reanimated: "npm:~3.3.0"
     react-native-safe-area-context: "npm:4.6.3"
-    react-native-screens: "npm:~3.22.0"
+    react-native-screens: "npm:^3.31.1"
     react-native-svg: "npm:13.9.0"
     react-query: "npm:^3.39.3"
     typescript: "npm:^5.1.6"
@@ -10704,16 +10704,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-screens@npm:~3.22.0":
-  version: 3.22.1
-  resolution: "react-native-screens@npm:3.22.1"
+"react-native-screens@npm:^3.31.1":
+  version: 3.31.1
+  resolution: "react-native-screens@npm:3.31.1"
   dependencies:
     react-freeze: "npm:^1.0.0"
     warn-once: "npm:^0.1.0"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 10c0/03d3c2fcccd6afe4b25c35396eb0280997724add60e4c2074572106237c5e299895ec8aa399ce23ba8c800663389a7dde8c6033b8c9f49064651298ead23c3ca
+  checksum: 10c0/899a02751ecbc6231ce3c869268fb510e5b53428c788135ae46f4bbd768efe78bf74f17fec5becc4c4c1e81a5f224a907dc890ba2406181ff9e21830dda95dec
   languageName: node
   linkType: hard
 
