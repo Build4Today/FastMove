@@ -117,24 +117,6 @@ export const DecisionDetailsScreen: React.FC = () => {
             Make a Decision
           </Heading>
 
-          <Box>
-            <Text fontSize="lg" fontWeight="bold" mb={1}>
-              About Yourself
-            </Text>
-            <Input
-              value={userDetails}
-              onChangeText={setUserDetails}
-              placeholder="Tell us about yourself"
-              backgroundColor="white"
-              borderWidth={1}
-              borderColor="gray.300"
-              rounded="md"
-              p={2}
-              accessibilityLabel="User details input"
-              accessibilityHint="Enter details about yourself"
-            />
-          </Box>
-
           <Box mb={4}>
             <Text fontSize="xl" fontWeight="bold" mb={2} color="blue.500">
               Your Needs
