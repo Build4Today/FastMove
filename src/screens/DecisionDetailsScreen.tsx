@@ -92,7 +92,9 @@ export const DecisionDetailsScreen: React.FC = () => {
         userNeeds,
       };
 
-      await saveDecision(decisionData);
+      // TODO Show response.finalDecision on a friendly modal
+
+      saveDecision(decisionData);
 
       toast.show({
         title: "Decision Submitted",
