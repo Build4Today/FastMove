@@ -4,14 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 import { LocalStorageKeys } from "../types/localStorageKeys";
 import { Box, Heading, TextArea, useToast, Button } from "native-base";
 
-const TellAboutYourselfButton = () => {
-  const navigation = useNavigation();
-  const handlePress = () => {
-    navigation.navigate("TellAboutYourselfScreen");
-  };
-  return <Button title="Tell About Yourself" onPress={handlePress} />;
-};
-
 const TellAboutYourselfScreen = () => {
   const [aboutYourself, setAboutYourself] = useState("");
   const toast = useToast();
@@ -19,12 +11,15 @@ const TellAboutYourselfScreen = () => {
   const handleSave = async () => {
     try {
       await AsyncStorage.setItem(LocalStorageKeys.ABOUT_YOURSELF, aboutYourself);
+
+      toast.show({
+        title: "Saved ✅"
+      });
     } catch (error) {
       console.error(error);
       toast.show({
         title: "Error",
         description: "There was an error saving your data.",
-        status: "error",
         duration: 5000,
       });
     }
@@ -47,7 +42,7 @@ const TellAboutYourselfScreen = () => {
         minHeight={100}
         autoCompleteType=""
         accessibilityLabel="User details input"
-        accessibilityHint="Enter details about yourself"
+        accessibilityHint="Enter details about yourself to make decisions easier"
       />
 
       <Button onPress={handleSave} colorScheme="blue" mt={4} mb={4} size="lg">
@@ -57,4 +52,4 @@ const TellAboutYourselfScreen = () => {
   );
 };
 
-export { TellAboutYourselfButton, TellAboutYourselfScreen };
+export { TellAboutYourselfScreen };

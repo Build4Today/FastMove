@@ -6,6 +6,7 @@ export const saveDecision = async (decision: Decision): Promise<void> => {
   try {
     const existingDecisions = await getDecisions();
     const updatedDecisions = [...existingDecisions, decision];
+
     await AsyncStorage.setItem(LocalStorageKeys.DECISION, JSON.stringify(updatedDecisions));
   } catch (error) {
     console.error("Error saving decision:", error);
