@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Decision } from "../types/decision.type";
-import { LocalStorageKeys } from "../types/localStorageKeys";
+import { LocalStorageKeys } from "../types/storage-keys.type";
 
 export const saveDecision = async (decision: Decision): Promise<void> => {
   try {

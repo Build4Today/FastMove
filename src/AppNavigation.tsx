@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { DecisionDetailsScreen } from "./screens/DecisionDetailsScreen";
 import { DecisionHistoryScreen } from "./screens/DecisionHistoryScreen";
-import { PreferenceScreen } from "./screens/PreferenceScreen";
+import { UserProfileScreen } from "./screens/UserProfileScreen";
 import { ScreenName } from "./types/navigation.type";
 import { TellAboutYourselfScreen } from "./screens/TellAboutYourselfScreen";
 
@@ -29,7 +29,7 @@ export const AppNavigation: React.FC = () => {
           component={DecisionHistoryScreen}
           options={{ title: "Decision History" }}
         />
-        <Stack.Screen name={ScreenName.PREFERENCE} component={PreferenceScreen} options={{ title: "Preferences" }} />
+        <Stack.Screen name={ScreenName.USER_PROFILE} component={UserProfileScreen} options={{ title: "Profile" }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

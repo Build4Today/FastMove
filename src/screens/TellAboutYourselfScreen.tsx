@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { LocalStorageKeys } from "../types/localStorageKeys";
+import { LocalStorageKeys } from "../types/storage-keys.type";
 import { Box, Heading, TextArea, useToast, Button } from "native-base";
 
 const TellAboutYourselfScreen = () => {
   const [aboutYourself, setAboutYourself] = useState("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const toast = useToast();
 
   const handleSave = async () => {
     try {
+      setIsLoading(true);
+
       await AsyncStorage.setItem(LocalStorageKeys.ABOUT_YOURSELF, aboutYourself);
 
       toast.show({
-        title: "Saved ✅"
+        title: "Saved ✅",
       });
     } catch (error) {
       console.error(error);
@@ -22,6 +26,8 @@ const TellAboutYourselfScreen = () => {
         description: "There was an error saving your data.",
         duration: 5000,
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -30,6 +36,7 @@ const TellAboutYourselfScreen = () => {
       <Heading mb={4} color="blue.500">
         About Yourself
       </Heading>
+
       <TextArea
         value={aboutYourself}
         onChangeText={setAboutYourself}
@@ -45,7 +52,7 @@ const TellAboutYourselfScreen = () => {
         accessibilityHint="Enter details about yourself to make decisions easier"
       />
 
-      <Button onPress={handleSave} colorScheme="blue" mt={4} mb={4} size="lg">
+      <Button onPress={handleSave} isLoading={isLoading} colorScheme="blue" mt={4} mb={4} size="lg">
         Save
       </Button>
     </Box>

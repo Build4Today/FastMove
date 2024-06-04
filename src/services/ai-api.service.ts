@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getUserProfile } from "./user-profile.service";
 
 const API_URL = "https://api.openai.com/v1/chat/completions";
 const API_KEY = "your-api-key";
@@ -15,8 +16,11 @@ export const makeDecision = async (
   userDetails: string,
   userNeeds: string
 ): Promise<ChatGPTResponse> => {
+  const userProfile = await getUserProfile();
+
   const prompt = `Given the following user details and needs:
 User Details: ${userDetails}
+User Profile: User name ${userProfile.name} | User age ${userProfile.age} | User occupation ${userProfile.occupation}
 User Needs: ${userNeeds}
 
 And the following two decisions:
