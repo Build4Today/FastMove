@@ -30,8 +30,8 @@ export const UserProfileScreen: React.FC = () => {
   };
 
   const handleSave = async () => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
 
       await updateUserProfile(userProfile);
       toast.show({ title: "Profile updated" });

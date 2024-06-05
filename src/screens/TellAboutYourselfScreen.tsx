@@ -11,9 +11,8 @@ const TellAboutYourselfScreen = () => {
   const toast = useToast();
 
   const handleSave = async () => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-
       await AsyncStorage.setItem(LocalStorageKeys.ABOUT_YOURSELF, aboutYourself);
 
       toast.show({
