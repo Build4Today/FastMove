@@ -34,7 +34,7 @@ export const UserProfileScreen: React.FC = () => {
       setIsLoading(true);
 
       await updateUserProfile(userProfile);
-      toast.show({ title: "Your details has been updated" });
+      toast.show({ title: "Profile updated" });
       navigation.goBack();
     } catch (error) {
       console.error("Error updating user details:", error);
