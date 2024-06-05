@@ -52,7 +52,7 @@ export const UserProfileScreen: React.FC = () => {
       </Heading>
 
       <Text fontSize="lg" fontWeight="bold" mb={2}>
-        By giving a profile helps making the most accurate decision for you
+        Providing a profile helps make the most accurate decision for you
       </Text>
 
       <Box>
