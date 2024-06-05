@@ -122,24 +122,6 @@ export const DecisionDetailsScreen: React.FC = () => {
 
           <Box mb={4}>
             <Text fontSize="xl" fontWeight="bold" mb={2} color="blue.500">
-              OPTIONAL. Your Needs
-            </Text>
-            <Input
-              value={userNeeds}
-              onChangeText={setUserNeeds}
-              placeholder="What are your needs?"
-              backgroundColor="white"
-              borderWidth={2}
-              borderColor="gray.300"
-              rounded="md"
-              p={3}
-              accessibilityLabel="User needs input"
-              accessibilityHint="Eventual needs for your decisions"
-            />
-          </Box>
-
-          <Box mb={4}>
-            <Text fontSize="xl" fontWeight="bold" mb={2} color="blue.500">
               Decision A
             </Text>
             <TextArea
@@ -175,6 +157,24 @@ export const DecisionDetailsScreen: React.FC = () => {
               autoCompleteType=""
               accessibilityLabel="Decision B input"
               accessibilityHint="Enter decision option B"
+            />
+          </Box>
+
+          <Box mb={4}>
+            <Text fontSize="xl" fontWeight="bold" mb={2} color="blue.500">
+              Any specific needs (optional)
+            </Text>
+            <Input
+              value={userNeeds}
+              onChangeText={setUserNeeds}
+              placeholder="What are your needs?"
+              backgroundColor="white"
+              borderWidth={2}
+              borderColor="gray.300"
+              rounded="md"
+              p={3}
+              accessibilityLabel="User needs input"
+              accessibilityHint="Eventual needs for your decisions"
             />
           </Box>
 
