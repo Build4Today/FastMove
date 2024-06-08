@@ -2081,15 +2081,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/vector-icons@npm:^14.0.2":
-  version: 14.0.2
-  resolution: "@expo/vector-icons@npm:14.0.2"
-  dependencies:
-    prop-types: "npm:^15.8.1"
-  checksum: 10c0/6784cc75b1dbaa7c589d41e8229469bc9aa1abe36efc2290e8b38ce39c2ec3e889a520ebd818ce0d084128fa19df9f69d77962e4bd70a21cc038a46ef6753f22
-  languageName: node
-  linkType: hard
-
 "@expo/xcpretty@npm:^4.2.1":
   version: 4.3.1
   resolution: "@expo/xcpretty@npm:4.3.1"
@@ -6635,7 +6626,7 @@ __metadata:
   resolution: "fast-move@workspace:."
   dependencies:
     "@babel/core": "npm:^7.20.0"
-    "@expo/vector-icons": "npm:^14.0.2"
+    "@expo/vector-icons": "npm:^13.0.0"
     "@react-native-async-storage/async-storage": "npm:1.18.2"
     "@react-native-firebase/app": "npm:^20.0.0"
     "@react-native-firebase/ml": "npm:^20.0.0"
