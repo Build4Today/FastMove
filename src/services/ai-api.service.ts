@@ -1,8 +1,6 @@
 import axios from "axios";
 import { getUserProfile } from "./user-profile.service";
-
-const API_URL = "https://api.openai.com/v1/chat/completions";
-const API_KEY = "your-api-key";
+import { OPEN_AI_API_URL, OPEN_AI_MODEL, API_KEY } from "@env";
 
 interface ChatGPTResponse {
   finalDecision: number;
@@ -35,9 +33,9 @@ Auto-generated title:`;
 
   try {
     const response = await axios.post(
-      API_URL,
+      OPEN_AI_API_URL,
       {
-        model: "gpt-3.5-turbo",
+        model: OPEN_AI_MODEL,
         messages: [{ role: "user", content: prompt }],
       },
       {
