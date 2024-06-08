@@ -6358,9 +6358,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-move@workspace:.":
+"fast-xml-parser@npm:^4.0.12, fast-xml-parser@npm:^4.2.4":
+  version: 4.4.0
+  resolution: "fast-xml-parser@npm:4.4.0"
+  dependencies:
+    strnum: "npm:^1.0.5"
+  bin:
+    fxparser: src/cli/cli.js
+  checksum: 10c0/ce32fad713471a40bea67959894168f297a5dd0aba64b89a2abc71a4fec0b1ae1d49c2dd8d8719ca8beeedf477824358c8a486b360b9f3ef12abc2e355d11318
+  languageName: node
+  linkType: hard
+
+"fastmove@workspace:.":
   version: 0.0.0-use.local
-  resolution: "fast-move@workspace:."
+  resolution: "fastmove@workspace:."
   dependencies:
     "@babel/core": "npm:^7.20.0"
     "@expo/vector-icons": "npm:^14.0.0"
@@ -6399,17 +6410,6 @@ __metadata:
     typescript: "npm:~5.3.3"
   languageName: unknown
   linkType: soft
-
-"fast-xml-parser@npm:^4.0.12, fast-xml-parser@npm:^4.2.4":
-  version: 4.4.0
-  resolution: "fast-xml-parser@npm:4.4.0"
-  dependencies:
-    strnum: "npm:^1.0.5"
-  bin:
-    fxparser: src/cli/cli.js
-  checksum: 10c0/ce32fad713471a40bea67959894168f297a5dd0aba64b89a2abc71a4fec0b1ae1d49c2dd8d8719ca8beeedf477824358c8a486b360b9f3ef12abc2e355d11318
-  languageName: node
-  linkType: hard
 
 "fastq@npm:^1.6.0":
   version: 1.17.1
