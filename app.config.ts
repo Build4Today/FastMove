@@ -5,13 +5,13 @@ export default ({ config }: ConfigContext): ExpoConfig => {
   const { APP_ENV } = process.env;
 
   return {
-    name: APP_ENV === "production" ? "Life Routine" : "Life Routine (DEV)",
-    slug: APP_ENV === "production" ? "liferoutine" : "liferoutine-dev",
+    name: APP_ENV === "production" ? "FastMove" : "FastMove (DEV)",
+    slug: APP_ENV === "production" ? "fastmove" : "fastmove-dev",
     ios: {
-      bundleIdentifier: APP_ENV === "production" ? "me.ph7.liferoutine" : "dev.ph7.liferoutine-dev",
+      bundleIdentifier: APP_ENV === "production" ? "me.ph7.fastmove" : "dev.ph7.fastmove-dev",
     },
     android: {
-      package: APP_ENV === "production" ? "me.ph7.liferoutine" : "me.ph7.liferoutine.dev",
+      package: APP_ENV === "production" ? "me.ph7.fastmove" : "dev.ph7.fastmove.dev",
     },
     extra: {
       eas: {
