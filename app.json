@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "FastMove",
-    "slug": "fastmove",
+    "slug": "fast-move",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,7 +20,7 @@
         "NSCameraUsageDescription": "This app uses the camera to scan text for decision-making.",
         "NSPhotoLibraryUsageDescription": "This app uses the photo library to select images for decision-making."
       },
-      "bundleIdentifier": "me.ph7.fastmove"
+      "bundleIdentifier": "me.ph7.fast-move"
     },
     "android": {
       "adaptiveIcon": {
@@ -32,7 +32,7 @@
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE"
       ],
-      "package": "me.ph7.fastmove"
+      "package": "me.ph7.fast-move"
     },
     "web": {
       "favicon": "./assets/favicon.png"
