@@ -11,7 +11,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       bundleIdentifier: APP_ENV === "production" ? "me.ph7.fast-move" : "dev.ph7.fast-move-dev",
     },
     android: {
-      package: APP_ENV === "production" ? "me.ph7.fast-move" : "dev.ph7.fast-move.dev",
+      package: APP_ENV === "production" ? "me.ph7.fast_move" : "dev.ph7.fast_move.dev",
     },
     extra: {
       eas: {
