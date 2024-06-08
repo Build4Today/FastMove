@@ -6,7 +6,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
 
   return {
     name: APP_ENV === "production" ? "FastMove" : "FastMove (DEV)",
-    slug: APP_ENV === "production" ? "fastmove" : "fastmove-dev",
+    slug: APP_ENV === "production" ? "fast-move" : "fast-move-dev",
     ios: {
       bundleIdentifier: APP_ENV === "production" ? "me.ph7.fastmove" : "dev.ph7.fastmove-dev",
     },
