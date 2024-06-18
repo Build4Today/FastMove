@@ -2,6 +2,20 @@
   "name": "fast-move",
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
+  "description": "Take less decisions by having an ideal AI clone",
+  "keywords": [
+    "react-native",
+    "ai",
+    "clone",
+    "fast",
+    "move",
+    "fast-move"
+  ],
+  "author": {
+    "name": "Pierre-Henry Soria",
+    "email": "hi@ph7.me",
+    "url": "https://ph7.me"
+  },
   "scripts": {
     "ts:check": "tsc",
     "start": "expo start",
