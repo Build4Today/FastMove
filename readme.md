@@ -1,6 +1,8 @@
-# 🚀 AI Native Mobile App
+# 🚀 FastMove - Take less decisions by having your AI clone
 
-React Native app, built with TypeScript 5 and Yarn 4. This mobile app uses NativeBase for the UI 🚀
+**Make the right choices! Be happier and more energized by taking less decisions**
+
+FastMove is a React Native app, built with TypeScript 5 and Yarn 4. This mobile app uses NativeBase for the UI 🚀
 
 
 ### Requirements
