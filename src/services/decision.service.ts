@@ -18,7 +18,7 @@ export const getDecisions = async (): Promise<Decision[]> => {
   try {
     const decisionsString = await AsyncStorage.getItem(LocalStorageKeys.DECISION);
     return decisionsString ? JSON.parse(decisionsString) : [];
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Error retrieving decisions:", error);
     throw new Error("An error occurred while retrieving the decisions.");
   }
