@@ -26,7 +26,7 @@ import { ScreenName } from "../types/navigation.type";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LocalStorageKeys } from "../types/storage-keys.type";
 
-const DecisionModal = ({ isOpen, onClose, decision, title }) => {
+const DecisionModal = ({ isOpen, onClose, decision, title }: any) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <Modal.Content maxWidth="400px">
