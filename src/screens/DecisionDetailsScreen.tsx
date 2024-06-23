@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useMemo, useState } from "react";
 import {
   TextArea,
   Box,
@@ -25,6 +25,8 @@ import { Decision } from "../types/decision.type";
 import { ScreenName } from "../types/navigation.type";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LocalStorageKeys } from "../types/storage-keys.type";
+import { random } from "../helpers/random.helper";
+import { headings } from "../headings";
 
 const DecisionModal = ({ isOpen, onClose, decision, title }: any) => {
   return (
@@ -64,6 +66,8 @@ export const DecisionDetailsScreen: React.FC = () => {
 
   const toast = useToast();
   const navigation = useNavigation();
+
+  const pickedUpHeading = useMemo(() => random(headings), []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -144,7 +148,7 @@ export const DecisionDetailsScreen: React.FC = () => {
       <Flex p={4} backgroundColor="white">
         <VStack space={6}>
           <Heading fontSize="2xl" mb={4}>
-            Make a Decision
+            {pickedUpHeading}
           </Heading>
 
           <Box mb={4}>
