@@ -99,10 +99,8 @@ export const DecisionDetailsScreen: React.FC = () => {
       return;
     }
 
+    setIsLoading(true);
     try {
-      // activate the loading spinner
-      setIsLoading(true);
-
       const userDetails = (await AsyncStorage.getItem(LocalStorageKeys.ABOUT_YOURSELF)) || "";
 
       const response = await makeDecision(decisionA, decisionB, userDetails, userNeeds);
