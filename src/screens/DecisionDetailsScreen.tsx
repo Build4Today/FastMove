@@ -148,7 +148,7 @@ export const DecisionDetailsScreen: React.FC = () => {
       <Flex p={4} backgroundColor="white">
         <VStack space={6}>
           <Heading fontSize="2xl" mb={4}>
-            {pickedUpHeading}
+            {pickedUpHeading as string}
           </Heading>
 
           <Box mb={4}>
