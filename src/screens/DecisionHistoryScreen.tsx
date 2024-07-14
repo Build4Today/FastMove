@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Input, Icon, Text, VStack, Heading, Spinner } from "native-base";
+import { FlatList, Input, Icon, Text, VStack, Heading, Spinner, Button } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
-import { getDecisions } from "../services/decision.service";
+import { deleteDecision, getDecisions } from "../services/decision.service";
 import { Decision } from "../types/decision.type";
 import { Box } from "native-base";
 
@@ -41,6 +41,14 @@ export const DecisionHistoryScreen: React.FC = () => {
     });
     setFilteredDecisions(filtered);
   };
+
+  const removeDecision = async (item: Decision) => {
+    if (!item.id) {
+      return null;
+    }
+
+    await deleteDecision(item.id);
+  }
 
   const renderDecisionItem = ({ item }: { item: Decision }) => (
     <Box borderWidth={1} borderColor="gray.300" p={4} my={2} rounded="md" backgroundColor="white">
@@ -89,6 +97,10 @@ export const DecisionHistoryScreen: React.FC = () => {
       <Text fontSize="md" mb={2}>
         {item.tags}
       </Text>
+
+      <Button onClick={() => removeDecision(item)}  colorScheme="blue" mt={4}>
+        Remove Decision
+      </Button>
     </Box>
   );
 
