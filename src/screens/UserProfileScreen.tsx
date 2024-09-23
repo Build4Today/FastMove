@@ -32,7 +32,6 @@ export const UserProfileScreen: React.FC = () => {
   const handleSave = async () => {
     setIsLoading(true);
     try {
-
       await updateUserProfile(userProfile);
       toast.show({ title: "Profile updated" });
       navigation.goBack();
