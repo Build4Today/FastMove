@@ -20,7 +20,10 @@
         "NSCameraUsageDescription": "This app uses the camera to scan text for decision-making.",
         "NSPhotoLibraryUsageDescription": "This app uses the photo library to select images for decision-making."
       },
-      "bundleIdentifier": "me.ph7.fast-move"
+      "bundleIdentifier": "me.ph7.fast-move",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
