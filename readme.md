@@ -27,8 +27,17 @@ You can also run `yarn ios` or `yarn android` to run the app directly on the res
 
 [![Pierre-Henry Soria](https://s.gravatar.com/avatar/a210fe61253c43c869d71eaed0e90149?s=200)](https://ph7.me "Pierre-Henry Soria personal website")
 
-**[Pierre-Henry Soria](https://ph7.me)**. A super passionate and mission-driven software engineer! 😊 I'm also a true cheese 🧀, dark chocolate, and espresso lover! 😋 Feel free to reach me at: `pierre {[AT]} pH7 {[D0T]} me`
+**[Pierre-Henry Soria](https://pierrehenry.dev)**. A passionate, mission-driven product software engineer! 😊 I’m also a true cheese 🧀, dark chocolate 🍫, and espresso ☕ lover! 😋
+
+[![@phenrysay][x-badge]](https://x.com/phenrysay "Follow Me on X") [![@pH7Programming][yt-badge]](https://www.youtube.com/@pH7Programming/videos "YouTube Tech Videos") [![@pierrehenry][substack-badge]](https://substack.com/@pierrehenry "Subscribe to my Substack") [![pH-7][github-badge]](https://github.com/pH-7 "My GitHub profile")
 
 ## License
 
 Generously distributed under the [MIT license](https://opensource.org/license/mit/).
+
+
+<!-- GitHub's Markdown reference links -->
+[x-badge]: https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white
+[yt-badge]: https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white
+[substack-badge]: https://img.shields.io/badge/Substack-Dummy?style=for-the-badge&logo=substack&logoColor=white
+[github-badge]: https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white
