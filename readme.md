@@ -1,4 +1,5 @@
-# 💨 FastMove 🚀
+# 💨 FastMove™ Smart Decision Maker
+
 ## Take less decisions by having your AI clone doing the crucial job for you 😌
 
 **Make the right choices! Be happier and more energized by taking less decisions**
