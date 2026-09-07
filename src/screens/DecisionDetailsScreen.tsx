@@ -209,7 +209,15 @@ export const DecisionDetailsScreen: React.FC = () => {
             />
           </Box>
 
-          <Button onPress={handleSubmit} isLoading={isLoading} colorScheme="blue" isDisabled={isLoading} mt={2} mb={1} size="lg">
+          <Button
+            onPress={handleSubmit}
+            isLoading={isLoading}
+            colorScheme="blue"
+            isDisabled={isLoading}
+            mt={2}
+            mb={1}
+            size="lg"
+          >
             {isLoading ? <Spinner color="white" /> : "Choose"}
           </Button>
 
