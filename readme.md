@@ -8,16 +8,17 @@ FastMove is a React Native app, built with TypeScript 5 and Yarn 4. This mobile 
 
 ### Requirements
 
-- [Install Volta](https://docs.volta.sh/guide/getting-started/) to make sure the correct NodeJS and Yarn version are installed for this project.
-- Make sure your yarn version is correct (needs to be v3). If you are still running yarn v1, please run `yarn set version berry` to make sure you use the Yarn Berry v3 (and not Yarn v1).
+Use the versions declared in `package.json`: Node 20.14.0 and Yarn 4.2.2. The Yarn executable is bundled in `.yarn/releases/`; no global Yarn upgrade is needed.
 
 ### First Run 🚀
 
-1. Copy `.env.dist` to `.env` (`cp .env.dist .env`)
-2. Open `.env` file and update your app details in there
-3. Run `yarn start` or `npx expo start`
+1. Install dependencies without changing the lockfile: `node .yarn/releases/yarn-4.2.2.cjs install --immutable`.
+2. Copy `.env.dist` to `.env` and review the configuration.
+3. Start the development server: `node .yarn/releases/yarn-4.2.2.cjs start`.
 
-You can also run `yarn ios` or `yarn android` to run the app directly on the respective device making debugging quite easier.
+This is an unfinished prototype. The type check currently fails on the OCR implementation, environment declarations, a dialog ref, and leftover house types. The AI service expects a different key name from the template, parses unvalidated model text, and would embed a provider key in the client bundle. Do not put a production provider key in this app; an authenticated backend is needed before distribution. Saving a decision also needs an awaited write and a stable ID before history deletion is reliable.
+
+Use `node .yarn/releases/yarn-4.2.2.cjs ts:check` and `node .yarn/releases/yarn-4.2.2.cjs prettier:check` to review the current state. The existing native build scripts use legacy Expo commands and have not been validated with the current SDK.
 
 ### Cleanup Code
 
@@ -33,14 +34,15 @@ You can also run `yarn ios` or `yarn android` to run the app directly on the res
 [![@phenrysay][x-badge]](https://x.com/phenrysay "Follow Me on X") [![@pH7Programming][yt-badge]](https://www.youtube.com/@pH7Programming/videos "YouTube Tech Videos") [![@pierrehenry][substack-badge]](https://substack.com/@pierrehenry "Subscribe to my Substack") [![pH-7][github-badge]](https://github.com/pH-7 "My GitHub profile")
 
 ### Project Prototype of FastMove
+
 ![FastMove Project Prototype](./fastmove-project-prototype.jpeg "Project Prototype of FastMove")
 
 ## License
 
 Generously distributed under the [MIT license](https://opensource.org/license/mit/).
 
-
 <!-- GitHub's Markdown reference links -->
+
 [x-badge]: https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white
 [yt-badge]: https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white
 [substack-badge]: https://img.shields.io/badge/Substack-Dummy?style=for-the-badge&logo=substack&logoColor=white
